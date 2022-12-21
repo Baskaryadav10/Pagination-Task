@@ -2,7 +2,7 @@ var btn_Next=document.querySelector('.btn-Next')
 var btn_Previous=document.querySelector('.btn-Previous')
 
 
-var data =[
+var data=[
     
     {
       "id": "1",
@@ -79,44 +79,47 @@ var data =[
       "name": "Nyasia Green DDS",
       "email": "Dino83@gmail.com"
     }
-]
-function child_clicked(e){
-  // console.log(e)
-   var for_number=parseInt(e.getAttribute('for'))-1
-   console.log(parseInt(e.getAttribute('for')));
-   var obtained_data=data[for_number]
-   console.log(data[for_number]);
-   //console.log('child_button_clicked')
-   var creating_div= document.createElement('div')
-   creating_div.innerHTML=`
+  ]
+  function child_clicked(e){
+    // console.log(e);
+    document.querySelector('.parent-data').innerHTML=''
+    var for_number = parseInt(e.getAttribute('for'))-1
+    console.log(parseInt(e.getAttribute('for')));
+    var obtained_data = data[for_number]
+    console.log(data[for_number]);
+    var creating_div = document.createElement('div')
+
+    creating_div.innerHTML = `
         <p for=${for_number}>${obtained_data.id}</p>
         <p for="name">${obtained_data.name}</p>
-        <p for="name">${obtained_data.email}</p>
+        <p for="email">${obtained_data.email}</p>
     `
     document.querySelector('.parent-data').append(creating_div)
- }
-
-btn_Next.addEventListener('click',()=>{
+    // console.log('child button clicked');
+  }
+  btn_Next.addEventListener('click',()=>{
     console.log('clicked');
-    var user_data=15;
+    var user_data = 12;
     var iter_val=(parseInt(user_data/5))*5
-    var check=user_data%5
+   // var check=user_data%5
     
    for (var i=1;i<=5;i++) {
     var taking_for=document.querySelector(`.btn-${i}`)
 
     var attribute_val=parseInt(taking_for.getAttribute('for'))
 
-    var taking_data_out=data[attribute_val]
+    //var taking_data_out=data[attribute_val]
 
-    if (attribute_val<=iter_val)
+    if (iter_val>=attribute_val){
     var increasing_attribute_val=attribute_val+5
    
     taking_for.setAttribute('for',increasing_attribute_val)
 
-    taking_for.innerText=increasing_attribute_val
-   
+    taking_for.innerText=increasing_attribute_val  
+    
+    }      
    }
+   
 })
 
    btn_Previous.addEventListener('click',()=>{
